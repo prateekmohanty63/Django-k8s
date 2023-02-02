@@ -20,7 +20,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-exli$=7fs%_p8=&5w$zc4p@d2l*-13#6381sydipizm-7r@oi$'
+
+# 'django-insecure-exli$=7fs%_p8=&5w$zc4p@d2l*-13#6381sydipizm-7r@oi$'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = str(os.environ.get("DEBUG")) =="1"
@@ -107,7 +109,7 @@ if DB_IS_AVAIL and POSTGRES_READY:
     }
 }
 
-print(DATABASES)
+# print(DATABASES)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
