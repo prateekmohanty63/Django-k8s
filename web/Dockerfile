@@ -3,9 +3,9 @@ FROM python:3.10.6-slim
 COPY . /app
 WORKDIR /app 
 
-RUN python -m env /opt/env
+RUN python3 -m venv /opt/venv
 
-RUN /opt/env/bin/pip install -r requirements.txt && \
+RUN /opt/venv/bin/pip install -r requirements.txt && \
 chmod +x entrypoint.sh
 
 # entrypoint.sh is actuall for the script to enter the virtualenv 
