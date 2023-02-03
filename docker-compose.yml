@@ -16,16 +16,30 @@ services:
     command: sh -c "chmod +x /app/migrate.sh && sh /app/migrate.sh && /app/entrypoint.sh"
   postgres_db:
     image: postgres 
+    command: -p 5434
     env_file:
       - web/.env
     expose:
-      - 5432
+      - 5434
+    ports:
+      - "5434:5434"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+  redis_db:
+    image: redis
+    restart: always
+    expose:
+      - 6380
+    ports:
+      - "6380:6380"
+    volumes:
+        - redis_data:/data
+    entrypoint: redis-server --appendonly yes --port 6380
 
 
 volumes:
   postgres_data:
+  redis_data:
 
 
       
